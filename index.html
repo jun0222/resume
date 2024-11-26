@@ -21,7 +21,6 @@
         color: #fff;
         padding-top: 30px;
         min-height: 70px;
-        border-bottom: #77aaff 3px solid;
       }
       header a {
         color: #fff;
@@ -103,13 +102,34 @@
 
     <section id="main">
       <div class="container">
-        <h1>私について</h1>
-        <p>ここに自己紹介文を記載します。</p>
+        <h1>プロジェクト一覧</h1>
+        <div id="projects"></div>
       </div>
     </section>
 
     <footer>
       <p>Copyright &copy; 2023 プロフィールサイト</p>
     </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const projectsContainer = document.getElementById("projects");
+            data.forEach((project) => {
+              const projectElement = document.createElement("div");
+              projectElement.innerHTML = `
+                <h2>${project.title}</h2>
+                <p>${project.summary}</p>
+                <img src="${project.thumbnail}" alt="${project.title}" width="200">
+                <p>${project.content}</p>
+              `;
+              projectsContainer.appendChild(projectElement);
+            });
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      });
+    </script>
   </body>
 </html>
