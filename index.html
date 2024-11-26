@@ -19,54 +19,34 @@
       header {
         background: #333;
         color: #fff;
-        padding-top: 30px;
-        min-height: 70px;
+        padding: 20px 0;
+        text-align: center;
       }
-      header a {
-        color: #fff;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-size: 16px;
-      }
-      header ul {
+      nav ul {
         padding: 0;
         list-style: none;
-      }
-      header li {
-        float: left;
-        display: inline;
-        padding: 0 20px 0 20px;
-      }
-      header #branding {
-        float: left;
-      }
-      header #branding h1 {
-        margin: 0;
-      }
-      header nav {
-        float: right;
-        margin-top: 10px;
-      }
-      #showcase {
-        min-height: 400px;
-        background: url("showcase.jpg") no-repeat 0 -400px;
         text-align: center;
+      }
+      nav ul li {
+        display: inline;
+        margin: 0 10px;
+      }
+      nav ul li a {
         color: #fff;
+        text-decoration: none;
+        font-size: 16px;
       }
-      #showcase h1 {
-        margin-top: 100px;
-        font-size: 55px;
-        margin-bottom: 10px;
-      }
-      #showcase p {
-        font-size: 20px;
-      }
-      #main {
+      section {
         padding: 20px;
         background: #fff;
+        margin-top: 20px;
       }
-      #main h1 {
-        text-align: center;
+      h1,
+      h2 {
+        color: #333;
+      }
+      p {
+        line-height: 1.6;
       }
       footer {
         padding: 20px;
@@ -80,56 +60,40 @@
   <body>
     <header>
       <div class="container">
-        <div id="branding">
-          <h1>プロフィールサイト</h1>
-        </div>
+        <h1>プロフィールサイト</h1>
         <nav>
           <ul>
             <li><a href="#">ホーム</a></li>
-            <li><a href="#">プロフィール</a></li>
-            <li><a href="#">連絡先</a></li>
+            <li><a href="resume/index.html">エンジニア経験</a></li>
+            <li><a href="contact/index.html">連絡先</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <section id="showcase">
-      <div class="container">
-        <h1>ようこそ！</h1>
-        <p>私のプロフィールサイトへようこそ。</p>
-      </div>
-    </section>
+    <section class="container">
+      <h1>自己紹介</h1>
+      <p>
+        こんにちは！私は xx
+        です。ソフトウェアエンジニアとして、さまざまなプロジェクトに取り組んできました。このサイトでは、私の経歴やプロジェクトについて紹介しています。
+      </p>
 
-    <section id="main">
-      <div class="container">
-        <h1>プロジェクト一覧</h1>
-        <div id="projects"></div>
-      </div>
+      <h2>エンジニア経験</h2>
+      <p>
+        私のエンジニアとしての経験については、<a href="resume/index.html"
+          >こちら</a
+        >のページをご覧ください。これまでに取り組んできたプロジェクトや使用した技術について詳しく説明しています。
+      </p>
+
+      <h2>連絡先</h2>
+      <p>
+        ご質問やお問い合わせがありましたら、<a href="#">こちら</a
+        >のページからご連絡ください。
+      </p>
     </section>
 
     <footer>
       <p>Copyright &copy; 2023 プロフィールサイト</p>
     </footer>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        fetch("data.json")
-          .then((response) => response.json())
-          .then((data) => {
-            const projectsContainer = document.getElementById("projects");
-            data.forEach((project) => {
-              const projectElement = document.createElement("div");
-              projectElement.innerHTML = `
-                <h2>${project.title}</h2>
-                <p>${project.summary}</p>
-                <img src="${project.thumbnail}" alt="${project.title}" width="200">
-                <p>${project.content}</p>
-              `;
-              projectsContainer.appendChild(projectElement);
-            });
-          })
-          .catch((error) => console.error("Error fetching data:", error));
-      });
-    </script>
   </body>
 </html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>エンジニア経験</title>
+    <title>プロフィールサイト</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -19,57 +19,110 @@
       header {
         background: #333;
         color: #fff;
-        padding: 20px 0;
-        text-align: center;
+        padding-top: 30px;
+        min-height: 70px;
       }
-      section {
+      header a {
+        color: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 16px;
+      }
+      header ul {
+        padding: 0;
+        list-style: none;
+      }
+      header li {
+        float: left;
+        display: inline;
+        padding: 0 20px 0 20px;
+      }
+      header #branding {
+        float: left;
+      }
+      header #branding h1 {
+        margin: 0;
+      }
+      header nav {
+        float: right;
+        margin-top: 10px;
+      }
+      #showcase {
+        min-height: 400px;
+        background: url("showcase.jpg") no-repeat 0 -400px;
+        text-align: center;
+        color: #fff;
+      }
+      #showcase h1 {
+        margin-top: 100px;
+        font-size: 55px;
+        margin-bottom: 10px;
+      }
+      #showcase p {
+        font-size: 20px;
+      }
+      #main {
         padding: 20px;
         background: #fff;
+      }
+      #main h1 {
+        text-align: center;
+      }
+      footer {
+        padding: 20px;
         margin-top: 20px;
-      }
-      h1,
-      h2 {
-        color: #333;
-      }
-      p {
-        line-height: 1.6;
+        color: #fff;
+        background-color: #333;
+        text-align: center;
       }
     </style>
   </head>
   <body>
     <header>
       <div class="container">
-        <h1>エンジニア経験</h1>
+        <div id="branding">
+          <h1>プロフィールサイト</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#">ホーム</a></li>
+            <li><a href="#">プロフィール</a></li>
+            <li><a href="#">連絡先</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
-    <section class="container">
-      <h2>プロジェクト1: FoodieFinder レストラン探索アプリ</h2>
-      <p>
-        個々のユーザーの食事の嗜好に基づいて、最適なレストランを提案するモバイルアプリケーションです。バックエンドはPythonとFlaskを用いて構築し、SQLiteを使用してユーザーデータとレストランのデータベースを管理しました。フロントエンドはReact
-        Nativeを用いて開発しました。
-      </p>
 
-      <h2>プロジェクト2: BudgetMaster 個人予算管理ツール</h2>
-      <p>
-        ユーザーが自分の収入と支出を追跡し、賢明な金融決定を下せるように支援するウェブベースのツールです。バックエンドはNode.jsとExpressを使用し、フロントエンドはReact.jsで構築しました。データベースにはMongoDBを用いました。
-      </p>
-
-      <h2>プロジェクト3: FitTrack 健康追跡アプリ</h2>
-      <p>
-        ユーザーの日々の運動、食事、睡眠を追跡し、健康維持に役立つ情報を提供するモバイルアプリケーションです。バックエンドはPythonとDjangoを使用し、フロントエンドはReact
-        Nativeで開発しました。
-      </p>
-
-      <h2>プロジェクト4: CodeCollab プログラミングコラボレーションツール</h2>
-      <p>
-        オンライン上での共同コーディングを可能にするウェブアプリケーションです。リアルタイムでコードを共有し、同時に編集することができます。バックエンドはNode.jsとSocket.IOを使用し、フロントエンドはReactで構築しました。
-      </p>
-
-      <h2>プロジェクト5: TravelPlanner 旅行計画アプリ</h2>
-      <p>
-        ユーザーが旅行計画を作成し、管理するためのモバイルアプリケーションです。バックエンドはPythonとFlaskで構築し、フロントエンドはReact
-        Nativeで開発しました。
-      </p>
+    <section id="main">
+      <div class="container">
+        <h1>プロジェクト一覧</h1>
+        <div id="projects"></div>
+      </div>
     </section>
+
+    <footer>
+      <p>Copyright &copy; 2023 プロフィールサイト</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("../data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const projectsContainer = document.getElementById("projects");
+            data.forEach((project) => {
+              const projectElement = document.createElement("div");
+              projectElement.innerHTML = `
+                <h2>${project.title}</h2>
+                <p>${project.summary}</p>
+                <img src="${project.thumbnail}" alt="${project.title}" width="200">
+                <p>${project.content}</p>
+              `;
+              projectsContainer.appendChild(projectElement);
+            });
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      });
+    </script>
   </body>
 </html>
