@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>プロフィールサイト</title>
+    <title>プロフィールサイト(内容サンプル)</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -19,31 +19,38 @@
       header {
         background: #333;
         color: #fff;
-        padding: 20px 0;
-        text-align: center;
+        padding-top: 30px;
+        min-height: 70px;
       }
-      nav ul {
-        padding: 0;
-        list-style: none;
-        text-align: center;
-      }
-      nav ul li {
-        display: inline;
-        margin: 0 10px;
-      }
-      nav ul li a {
+      header a {
         color: #fff;
         text-decoration: none;
+        text-transform: uppercase;
         font-size: 16px;
+      }
+      header ul {
+        padding: 0;
+        list-style: none;
+      }
+      header li {
+        float: left;
+        display: inline;
+        padding: 0 20px 0 20px;
+      }
+      header #branding {
+        float: left;
+      }
+      header #branding h1 {
+        margin: 0;
+      }
+      header nav {
+        float: right;
+        margin-top: 10px;
       }
       section {
         padding: 20px;
         background: #fff;
         margin-top: 20px;
-      }
-      h1,
-      h2 {
-        color: #333;
       }
       p {
         line-height: 1.6;
@@ -60,7 +67,9 @@
   <body>
     <header>
       <div class="container">
-        <h1>プロフィールサイト</h1>
+        <div id="branding">
+          <h1>プロフィールサイト(内容サンプル)</h1>
+        </div>
         <nav>
           <ul>
             <li><a href="#">ホーム</a></li>
