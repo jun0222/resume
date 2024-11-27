@@ -125,6 +125,17 @@ sudo systemctl restart nginx
 
 # 以上でresume.ドメイン でアクセスできることを確認
 # ドメインへのアクセスでnginxのデフォルトページが表示されることを確認
+
+# certbot インストール
+sudo snap install core && sudo snap refresh core && sudo snap install --classic certbot && sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+# certbot 確認
+certbot --version
+
+# certbot でtsl設定
+sudo certbot --nginx -d resume.ドメイン
+
+# インバウンドルールのセキュリティグループを編集して、HTTPS 443 ポート、0.0.0.0/0に開放
 ```
 
 ## TODO: コンテンツ
